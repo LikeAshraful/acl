@@ -52,7 +52,7 @@
                 
                 <div class="form-group{{ $errors->has('is_active') ? ' has-error' : '' }}">
                     {!! Form::label('is_active', 'Status:') !!}
-                    {!! Form::select('is_active',array(1 => 'Active', 0 =>'Not Active'), 0, ['class' => 'form-control']) !!}
+                    {!! Form::select('is_active',array(1 => 'Active', 0 =>'Not Active'), null, ['class' => 'form-control']) !!}
                     
                     @if ($errors->has('is_active'))
                         <span class="help-block">
@@ -73,7 +73,7 @@
                 </div>
                 
                 <div class="form-group">
-                    {!! Form::submit('Create User', ['class' => 'btn btn-primary']) !!}
+                    {!! Form::submit('Edit User', ['class' => 'btn btn-primary']) !!}
                 </div>
                   
       

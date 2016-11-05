@@ -105,8 +105,40 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   
+       
+        $validation = Validator::make($request->all(),[
+            
+           'name' => 'required | max:255',
+           'email' => 'required',
+           'role_id' => 'required',
+           'is_active' => 'required',
+           
+           ]);
+           
+       if($validation->fails()){
+       
+            return redirect()->back()->withInput()->withErrors($validation);
+       }
         
+            $user = User::find($id);
+       
+            $user->name = $request['name'];
+            $user->email = $request['email'];
+            $user->role_id = $request['role_id'];
+            $user->is_active = $request['is_active'];
+            $user->password = bcrypt($request['password']);
+        
+
+        
+        
+         $user->save();
+        
+        
+       
+        
+        return redirect('/admin/users')->with('message', 'Users Successfully Updated!');
+    
     }
 
     /**
