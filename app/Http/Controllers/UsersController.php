@@ -92,7 +92,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.users.edit');
+        $user = User::find($id);
+        $roles = Role::lists('name','id')->all();
+        return view('admin.users.edit')->with('user', $user)->with('roles',$roles);
     }
 
     /**
@@ -104,7 +106,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
