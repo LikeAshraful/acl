@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\User;
+use App\Role;
 
 class UsersController extends Controller
 {
@@ -28,7 +29,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::lists('name','id')->all();
+        return view('admin.users.create')->with('roles', $roles);
     }
 
     /**
@@ -39,7 +41,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       return $request->all();
     }
 
     /**
