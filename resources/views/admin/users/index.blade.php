@@ -11,7 +11,15 @@
          <div class="row">
              <h1 class="text-center">All Users</h1>
          </div>
+         
+         
         <div class="row">
+          
+          @if (session('massage'))
+              <div class="alert alert-success">
+                  {{ session('massage') }}
+              </div>
+          @endif
 
              <table class="table table-hover">
                   <thead>
