@@ -127,17 +127,11 @@ class UsersController extends Controller
             $user->email = $request['email'];
             $user->role_id = $request['role_id'];
             $user->is_active = $request['is_active'];
-            $user->password = bcrypt($request['password']);
+            $user->password = bcrypt($request['password']); 
         
-
+            $user->save();
         
-        
-         $user->save();
-        
-        
-       
-        
-        return redirect('/admin/users')->with('message', 'Users Successfully Updated!');
+            return redirect('/admin/users')->with('message', 'Users Successfully Updated!');
     
     }
 
