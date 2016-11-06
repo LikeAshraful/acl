@@ -120,18 +120,29 @@ class UsersController extends Controller
        
             return redirect()->back()->withInput()->withErrors($validation);
        }
-        
-            $user = User::find($id);
        
+        $user = User::find($id);
+        
+       if($request->password == ''){
             $user->name = $request['name'];
             $user->email = $request['email'];
             $user->role_id = $request['role_id'];
             $user->is_active = $request['is_active'];
-            $user->password = bcrypt($request['password']); 
-        
+            $user->password = $user->password;
+            
             $user->save();
+       }else{
+            $user->name = $request['name'];
+            $user->email = $request['email'];
+            $user->role_id = $request['role_id'];
+            $user->is_active = $request['is_active'];
+            $user->password = bcrypt($request['password']);
+            
+            $user->save();
+       }
         
-            return redirect('/admin/users')->with('message', 'Users Successfully Updated!');
+        
+        return redirect('/admin/users')->with('message', 'Users Successfully Updated!');
     
     }
 
